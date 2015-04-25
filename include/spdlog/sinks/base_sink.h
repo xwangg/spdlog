@@ -46,7 +46,7 @@ template<class Mutex>
 class base_sink:public sink
 {
 public:
-    base_sink():_mutex() {}
+    base_sink():_min_level(-1){}
     virtual ~base_sink() = default;
 
     base_sink(const base_sink&) = delete;
@@ -73,7 +73,7 @@ public:
 protected:
     virtual void _sink_it(const details::log_msg& msg) = 0;
     Mutex _mutex;
-    std::atomic<int> _min_level = -1;
+    std::atomic<int> _min_level;
 };
 }
 }
