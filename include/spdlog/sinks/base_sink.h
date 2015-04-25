@@ -54,14 +54,26 @@ public:
 
     void log(const details::log_msg& msg) override
     {
-        std::lock_guard<Mutex> lock(_mutex);
-        _sink_it(msg);
+
+        if (_min_level.load(std::memory_order_relaxed) > msg.level)
+            return;
+
+        {
+            std::lock_guard<Mutex> lock(_mutex);
+            _sink_it(msg);
+        }
+    }
+
+    void set_level(level::level_enum log_level) override
+    {
+        _min_level.store(log_level);
     }
 
 
 protected:
     virtual void _sink_it(const details::log_msg& msg) = 0;
     Mutex _mutex;
+    std::atomic<int> _min_level = -1;
 };
 }
 }
