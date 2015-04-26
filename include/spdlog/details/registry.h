@@ -76,7 +76,7 @@ public:
         if (_formatter)
             new_logger->set_formatter(_formatter);
 
-        new_logger->set_level(_level);
+        new_logger->set_sinks_level(_level);
         register_logger_impl(new_logger);
         return new_logger;
     }
@@ -123,7 +123,7 @@ public:
     {
         std::lock_guard<std::mutex> lock(_mutex);
         for (auto& l : _loggers)
-            l.second->set_level(log_level);
+            l.second->set_sinks_level(log_level);
         _level = log_level;
     }
 

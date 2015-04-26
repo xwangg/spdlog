@@ -36,6 +36,7 @@ public:
     virtual ~sink() {}
     virtual void log(const details::log_msg& msg) = 0;
     virtual void set_level(level::level_enum level) = 0;
+    virtual level::level_enum get_level() = 0;
 };
 }
 }
