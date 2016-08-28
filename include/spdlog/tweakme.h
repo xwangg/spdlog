@@ -61,8 +61,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////
 // Uncomment to enable the SPDLOG_DEBUG/SPDLOG_TRACE macros.
-// #define SPDLOG_DEBUG_ON
-// #define SPDLOG_TRACE_ON
+#define SPDLOG_DEBUG_ON
+#define SPDLOG_TRACE_ON
 ///////////////////////////////////////////////////////////////////////////////
 
 
@@ -70,5 +70,5 @@
 // Uncomment to avoid locking in the registry operations (spdlog::get(), spdlog::drop() spdlog::register()).
 // Use only if your code never modifes concurrently the registry.
 // Note that upon creating a logger the registry is modified by spdlog..
-// #define SPDLOG_NO_REGISTRY_MUTEX
+#define SPDLOG_NO_REGISTRY_MUTEX
 ///////////////////////////////////////////////////////////////////////////////
